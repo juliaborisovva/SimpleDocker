@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  part5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: part6nginx05
+    volumes:
+     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  part6:
+    build:
+      context: .
+      dockerfile: Dockerfile_my_nginx
+    container_name: part6nginx
+    ports:
+     - "80:8080"
+    depends_on:
+     - part5
+    volumes:
+     - ./nginx/nginx_my_nginx.conf:/etc/nginx/nginx.conf
